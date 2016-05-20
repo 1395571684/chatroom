@@ -18,19 +18,18 @@ public static void main(String[] args)  {
 		cIn=new DataInputStream(s.getInputStream());
 	    cOut=new DataOutputStream(s.getOutputStream());
 		//连接
-	    cOut.writeUTF("客户端向服务器反馈");
 	    String rStr=null;
 	    String wStr=null;
 	    //交流
 	    while(true){
+	    	rStr=cIn.readUTF();
+	    	if(rStr!=null){
+	    		System.out.println(rStr);
+	    	}
 	    	System.out.println("客户端说：");
 	    	Scanner input=new Scanner(System.in);
 	    	wStr=input.next();
 	    	cOut.writeUTF(wStr);
-	    	rStr=cIn.readUTF();
-	    	if(rStr!=null){
-	    		System.out.println("服务器说："+rStr);
-	    	}
 	    }
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
@@ -52,4 +51,6 @@ public static void main(String[] args)  {
 	}
 	
 }
+
 }
+
